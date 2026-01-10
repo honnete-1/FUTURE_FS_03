@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Play, Info, ChevronRight, ChevronLeft } from "lucide-react";
+import { Play, Info, ChevronRight, ChevronLeft, X } from "lucide-react";
 
 const heroContent = [
     {
-        id: 1,
+        id: 5, // Neon Genesis ID from CMS
         title: "NEON GENESIS",
         subtitle: "AWAKENING",
         description: "In a future where humanity merges with the digital realm, one rogue AI discovers the secret to consciousness. The line between reality and simulation blurs in this visionary original series.",
@@ -15,7 +15,7 @@ const heroContent = [
         color: "from-blue-600/20"
     },
     {
-        id: 2,
+        id: 1, // Cyberpunk ID from CMS
         title: "CYBERPUNK",
         subtitle: "EDGERUNNERS",
         description: "In a dystopia riddled with corruption and cybernetic implants, a talented but reckless street kid strives to become a mercenary outlaw — an edgerunner.",
@@ -24,7 +24,7 @@ const heroContent = [
         color: "from-yellow-400/20"
     },
     {
-        id: 3,
+        id: 2, // Matrix ID from CMS
         title: "THE MATRIX",
         subtitle: "RESURRECTIONS",
         description: "Return to a world of two realities: one, everyday life; the other, what lies behind it. To find out if his reality is a construct, to truly know himself, Mr. Anderson will have to choose to follow the white rabbit once more.",
@@ -35,6 +35,7 @@ const heroContent = [
 
 export default function HeroCarousel() {
     const [current, setCurrent] = useState(0);
+    const [showInfo, setShowInfo] = useState(false);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -80,7 +81,7 @@ export default function HeroCarousel() {
 
                             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4 leading-tight">
                                 {item.title}: <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">{item.subtitle}</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 py-2 inline-block">{item.subtitle}</span>
                             </h1>
 
                             <p className="text-lg text-gray-300 mb-8 line-clamp-3 md:line-clamp-none max-w-xl drop-shadow-md">
@@ -93,7 +94,10 @@ export default function HeroCarousel() {
                                         <Play className="w-5 h-5 fill-black" /> Play
                                     </button>
                                 </Link>
-                                <button className="flex items-center gap-2 px-8 py-3 rounded bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold hover:bg-white/20 transition-colors">
+                                <button
+                                    onClick={() => setShowInfo(true)}
+                                    className="flex items-center gap-2 px-8 py-3 rounded bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold hover:bg-white/20 transition-colors"
+                                >
                                     <Info className="w-5 h-5" /> More Info
                                 </button>
                             </div>
@@ -120,6 +124,49 @@ export default function HeroCarousel() {
                     />
                 ))}
             </div>
+            {/* Info Modal */}
+            {showInfo && (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+                    <div className="bg-[#1a1a1a] rounded-xl max-w-2xl w-full p-6 md:p-8 relative border border-white/10">
+                        <button
+                            onClick={() => setShowInfo(false)}
+                            className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors"
+                        >
+                            <X className="w-6 h-6 text-white" />
+                        </button>
+
+                        <div className="relative h-64 md:h-80 w-full mb-6 rounded-lg overflow-hidden">
+                            <Image
+                                src={heroContent[current].image}
+                                alt={heroContent[current].title}
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent" />
+                        </div>
+
+                        <h2 className="text-3xl font-bold mb-2">{heroContent[current].title}: {heroContent[current].subtitle}</h2>
+
+                        <div className="flex gap-2 my-4">
+                            <span className="bg-green-600 text-black px-2 py-0.5 rounded text-xs font-bold">98% Match</span>
+                            <span className="border border-gray-600 px-2 py-0.5 rounded text-xs">2026</span>
+                            <span className="border border-gray-600 px-2 py-0.5 rounded text-xs">4K</span>
+                        </div>
+
+                        <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                            {heroContent[current].description}
+                        </p>
+
+                        <div className="flex gap-4">
+                            <Link href={`/watch/${heroContent[current].id}`} className="flex-1">
+                                <button className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded bg-white text-black font-bold hover:bg-gray-200 transition-colors">
+                                    <Play className="w-5 h-5 fill-black" /> Play
+                                </button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

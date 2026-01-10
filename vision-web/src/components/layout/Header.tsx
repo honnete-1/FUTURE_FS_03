@@ -62,10 +62,10 @@ export default function Header() {
                     </Link>
 
                     {/* User Menu / Login */}
-                    <Link href="/login" className="flex items-center gap-2 cursor-pointer group">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs ring-2 ring-transparent group-hover:ring-white transition-all overflow-hidden">
-                            <Image src="https://placehold.co/100x100/png?text=US" alt="User" width={32} height={32} />
-                        </div>
+                    <Link href="/login">
+                        <button className="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700 transition-colors">
+                            Sign In
+                        </button>
                     </Link>
 
                     <button className="md:hidden hover:text-white transition-colors">

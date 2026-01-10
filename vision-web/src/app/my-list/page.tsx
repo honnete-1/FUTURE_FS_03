@@ -4,9 +4,9 @@ import ContentRow from "@/components/home/ContentRow";
 
 export default function MyVision() {
     const myList = [
-        { title: "Cyberpunk: Edgerunners", match: 98, tags: ["Anime", "Sci-Fi"] },
-        { title: "The Matrix", match: 99, tags: ["Action", "Sci-Fi"] },
-        { title: "Inception", match: 98, tags: ["Sci-Fi", "Mind-Bending"] },
+        { id: 101, title: "Cyberpunk: Edgerunners", match: 98, tags: ["Anime", "Sci-Fi"], image: null },
+        { id: 102, title: "The Matrix", match: 99, tags: ["Action", "Sci-Fi"], image: null },
+        { id: 103, title: "Inception", match: 98, tags: ["Sci-Fi", "Mind-Bending"], image: null },
     ];
 
     return (

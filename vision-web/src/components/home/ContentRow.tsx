@@ -6,7 +6,7 @@ import MovieCard from "./MovieCard";
 
 interface ContentRowProps {
     title: string;
-    items: Array<{ title: string; match: number; tags: string[]; image?: string | null }>;
+    items: Array<{ id: number; title: string; match: number; tags: string[]; image?: string | null }>;
 }
 
 export default function ContentRow({ title, items }: ContentRowProps) {
@@ -47,7 +47,7 @@ export default function ContentRow({ title, items }: ContentRowProps) {
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {items.map((item, i) => (
-                        <MovieCard key={i} title={item.title} image={item.image || null} match={item.match} tags={item.tags} />
+                        <MovieCard key={i} title={item.title} image={item.image || null} match={item.match} tags={item.tags} id={item.id} />
                     ))}
                 </div>
 

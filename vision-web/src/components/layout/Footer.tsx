@@ -19,24 +19,24 @@ export default function Footer() {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
                     <div className="flex flex-col gap-3">
-                        <Link href="#" className="hover:underline">Audio Description</Link>
-                        <Link href="#" className="hover:underline">Investor Relations</Link>
-                        <Link href="#" className="hover:underline">Legal Notices</Link>
+                        <Link href="/coming-soon" className="hover:underline">Audio Description</Link>
+                        <Link href="/coming-soon" className="hover:underline">Investor Relations</Link>
+                        <Link href="/coming-soon" className="hover:underline">Legal Notices</Link>
                     </div>
                     <div className="flex flex-col gap-3">
-                        <Link href="#" className="hover:underline">Help Center</Link>
-                        <Link href="#" className="hover:underline">Jobs</Link>
-                        <Link href="#" className="hover:underline">Cookie Preferences</Link>
+                        <Link href="/coming-soon" className="hover:underline">Help Center</Link>
+                        <Link href="/coming-soon" className="hover:underline">Jobs</Link>
+                        <Link href="/coming-soon" className="hover:underline">Cookie Preferences</Link>
                     </div>
                     <div className="flex flex-col gap-3">
-                        <Link href="#" className="hover:underline">Gift Cards</Link>
-                        <Link href="#" className="hover:underline">Terms of Use</Link>
-                        <Link href="#" className="hover:underline">Corporate Information</Link>
+                        <Link href="/coming-soon" className="hover:underline">Gift Cards</Link>
+                        <Link href="/coming-soon" className="hover:underline">Terms of Use</Link>
+                        <Link href="/coming-soon" className="hover:underline">Corporate Information</Link>
                     </div>
                     <div className="flex flex-col gap-3">
-                        <Link href="#" className="hover:underline">Media Center</Link>
-                        <Link href="#" className="hover:underline">Privacy</Link>
-                        <Link href="#" className="hover:underline">Contact Us</Link>
+                        <Link href="/coming-soon" className="hover:underline">Media Center</Link>
+                        <Link href="/coming-soon" className="hover:underline">Privacy</Link>
+                        <Link href="/coming-soon" className="hover:underline">Contact Us</Link>
                     </div>
                 </div>
 

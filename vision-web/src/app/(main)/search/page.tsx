@@ -1,24 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import MovieCard from "@/components/home/MovieCard";
+import { searchContent } from "@/services/cms";
 
 export default function SearchPage() {
     const [query, setQuery] = useState("");
+    const [results, setResults] = useState<any[]>([]);
 
-    const allContent = [
-        { title: "Cyberpunk: Edgerunners", match: 98, tags: ["Anime", "Sci-Fi"], image: "/cyberpunk.png" },
-        { title: "Blade Runner 2049", match: 95, tags: ["Sci-Fi", "Thriller"] },
-        { title: "The Matrix", match: 99, tags: ["Action", "Sci-Fi"] },
-        { title: "Inception", match: 98, tags: ["Sci-Fi", "Mind-Bending"] },
-        { title: "Interstellar", match: 97, tags: ["Sci-Fi", "Adventure"] },
-        { title: "The Dark Knight", match: 99, tags: ["Action", "Crime"] },
-    ];
-
-    const results = allContent.filter(item =>
-        item.title.toLowerCase().includes(query.toLowerCase())
-    );
+    useEffect(() => {
+        if (query) {
+            setResults(searchContent(query));
+        } else {
+            setResults([]);
+        }
+    }, [query]);
 
     return (
         <div className="min-h-screen bg-[#0a0a0a] pt-24 px-4 md:px-8">
@@ -41,8 +38,8 @@ export default function SearchPage() {
                     <h2 className="text-gray-400 mb-4">Top Results for "{query}"</h2>
                     {results.length > 0 ? (
                         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                            {results.map((item, i) => (
-                                <MovieCard key={i} title={item.title} image="" match={item.match} tags={item.tags} />
+                            {results.map((item) => (
+                                <MovieCard key={item.id} id={item.id} title={item.title} image={item.image} match={item.match} tags={item.tags} />
                             ))}
                         </div>
                     ) : (

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] pb-24">
       <HeroCarousel />
-      <div className="relative z-20 -mt-32 md:-mt-48 pl-0 md:pl-0 space-y-4">
+      <div className="relative z-20 mt-4 pl-0 md:pl-0 space-y-4">
         <ContentRow title="Trending Now on Net Moviex" items={trendingNow} />
         <ContentRow title="Top Rated for You" items={topRated} />
         <ContentRow title="New Releases" items={trendingNow} />
