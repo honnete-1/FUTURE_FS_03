@@ -170,7 +170,7 @@ export const mockData: MediaItem[] = [
     {
         id: 16,
         title: "Godzilla Minus One",
-        image: "https://image.tmdb.org/t/p/original/hkxxMIGaiCTmrEArK7J9HpZoomk.jpg",
+        image: "https://placehold.co/400x600/000000/FFFFFF/png?text=Godzilla+Minus+One",
         tags: ["Sci-Fi", "Horror", "Action"],
         match: 96,
         description: "Postwar Japan is at its lowest point when a new crisis emerges in the form of a giant monster, baptized in the horrific power of the atomic bomb.",
@@ -190,7 +190,7 @@ export const mockData: MediaItem[] = [
     {
         id: 18,
         title: "Severance",
-        image: "https://image.tmdb.org/t/p/original/l60zW8yXvWp4F6G1yXk5kXQk9.jpg",
+        image: "https://placehold.co/400x600/000000/FFFFFF/png?text=Severance",
         tags: ["Thriller", "Drama", "Sci-Fi"],
         match: 97,
         description: "Mark leads a team of office workers whose memories have been surgically divided between their work and personal lives. When a mysterious colleague appears outside of work, it begins a journey to discover the truth about their jobs.",
@@ -200,7 +200,7 @@ export const mockData: MediaItem[] = [
     {
         id: 19,
         title: "Everything Everywhere All At Once",
-        image: "https://image.tmdb.org/t/p/original/w3LxiVYdWWRvEVBA5Y11WdbLB2.jpg",
+        image: "https://placehold.co/400x600/000000/FFFFFF/png?text=Everything+Everywhere",
         tags: ["Action", "Adventure", "Sci-Fi"],
         match: 99,
         description: "An aging Chinese immigrant is swept up in an insane adventure, where she alone can save the world by exploring other universes connecting with the lives she could have led.",
@@ -252,7 +252,7 @@ export const mockData: MediaItem[] = [
         id: 24,
         title: "Fallout",
         // Replaced broken link with a new valid one
-        image: "https://image.tmdb.org/t/p/original/s7SE516D6x1z9k3y6y8d8x6x5x5.jpg",
+        image: "https://placehold.co/400x600/000000/FFFFFF/png?text=Fallout",
         tags: ["Sci-Fi", "Action", "Post-Apocalyptic"],
         match: 95,
         description: "In a future, post-apocalyptic Los Angeles brought about by nuclear decimation, citizens must live in underground bunkers to protect themselves from radiation, mutants and bandits.",
