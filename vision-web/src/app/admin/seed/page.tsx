@@ -16,6 +16,9 @@ export default function SeedPage() {
             // Try explicit independent write
             const { doc, setDoc } = await import("firebase/firestore");
             const { db } = await import("@/lib/firebase");
+
+            if (!db) throw new Error("Firebase DB not initialized");
+
             await setDoc(doc(db, "test", "ping"), { timestamp: new Date() });
 
             setStatus("Connection OK! You can Seed now.");
