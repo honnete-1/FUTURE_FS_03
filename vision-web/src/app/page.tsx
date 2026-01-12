@@ -2,6 +2,8 @@ import HeroCarousel from "@/components/home/HeroCarousel";
 import ContentRow from "@/components/home/ContentRow";
 import { fetchMoviesAndShows } from "@/services/db";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const allMedia = await fetchMoviesAndShows();
 

@@ -4,6 +4,8 @@ import { fetchMoviesAndShows } from "@/services/db";
 import ContentRow from "@/components/home/ContentRow";
 import { Metadata } from 'next';
 
+export const dynamic = "force-dynamic";
+
 type Props = {
     params: Promise<{ id: string }>
 }
