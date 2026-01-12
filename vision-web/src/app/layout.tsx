@@ -20,6 +20,8 @@ export const metadata: Metadata = {
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
+import { MyListProvider } from "@/context/MyListContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,12 +30,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0a0a0a] text-white`}
       >
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <MyListProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </MyListProvider>
       </body>
     </html>
   );

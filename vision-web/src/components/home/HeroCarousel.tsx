@@ -7,28 +7,27 @@ import { Play, Info, ChevronRight, ChevronLeft, X } from "lucide-react";
 
 const heroContent = [
     {
-        id: 5, // Neon Genesis ID from CMS
-        title: "NEON GENESIS",
-        subtitle: "AWAKENING",
-        description: "In a future where humanity merges with the digital realm, one rogue AI discovers the secret to consciousness. The line between reality and simulation blurs in this visionary original series.",
-        image: "/hero.png",
-        color: "from-blue-600/20"
-    },
-    {
         id: 1, // Cyberpunk ID from CMS
         title: "CYBERPUNK",
         subtitle: "EDGERUNNERS",
-        description: "In a dystopia riddled with corruption and cybernetic implants, a talented but reckless street kid strives to become a mercenary outlaw — an edgerunner.",
-        image: "/cyberpunk_poster.png",
-        // Using the poster as bg for now, ideally wide aspect asset
+        description: "A street kid tries to survive in a technology and body modification-obsessed city of the future. With everything to lose, he chooses to stay alive by becoming an edgerunner—a mercenary outlaw also known as a cyberpunk.",
+        image: "https://upload.wikimedia.org/wikipedia/en/2/23/Cyberpunk_Edgerunners_poster.jpg",
         color: "from-yellow-400/20"
     },
     {
-        id: 2, // Matrix ID from CMS
+        id: 2, // Dune Part Two
+        title: "DUNE",
+        subtitle: "PART TWO",
+        description: "Paul Atreides unites with Chani and the Fremen while on a warpath of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe.",
+        image: "https://image.tmdb.org/t/p/original/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+        color: "from-orange-600/20"
+    },
+    {
+        id: 11, // The Matrix
         title: "THE MATRIX",
-        subtitle: "RESURRECTIONS",
-        description: "Return to a world of two realities: one, everyday life; the other, what lies behind it. To find out if his reality is a construct, to truly know himself, Mr. Anderson will have to choose to follow the white rabbit once more.",
-        image: "/matrix.png",
+        subtitle: "",
+        description: "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.",
+        image: "https://image.tmdb.org/t/p/original/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
         color: "from-green-500/20"
     }
 ];

@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Play, Plus, ThumbsUp, ChevronDown } from "lucide-react";
+import { Play, Plus, Check, ThumbsUp, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { useMyList } from "@/context/MyListContext";
 
 interface MovieCardProps {
     title: string;
@@ -15,6 +16,17 @@ interface MovieCardProps {
 
 export default function MovieCard({ title, image, tags, match, id = 1 }: MovieCardProps) {
     const videoId = id || Math.floor(Math.random() * 100);
+    const { isInList, addToList, removeFromList } = useMyList();
+    const isAdded = isInList(videoId);
+
+    const handleListToggle = (e: React.MouseEvent) => {
+        e.preventDefault(); // Prevent navigation
+        if (isAdded) {
+            removeFromList(videoId);
+        } else {
+            addToList(videoId);
+        }
+    };
 
     return (
         <Link href={`/watch/${videoId}`}>
@@ -51,8 +63,11 @@ export default function MovieCard({ title, image, tags, match, id = 1 }: MovieCa
                         <button className="w-8 h-8 rounded-full bg-white flex items-center justify-center hover:bg-gray-200 text-black shadow-md transition-transform hover:scale-110">
                             <Play className="w-3 h-3 fill-black" />
                         </button>
-                        <button className="w-8 h-8 rounded-full border border-gray-400 flex items-center justify-center hover:border-white text-gray-300 hover:text-white transition-colors">
-                            <Plus className="w-4 h-4" />
+                        <button
+                            onClick={handleListToggle}
+                            className={`w-8 h-8 rounded-full border flex items-center justify-center transition-colors ${isAdded ? 'border-green-500 text-green-500 hover:bg-green-500/10' : 'border-gray-400 text-gray-300 hover:border-white hover:text-white'}`}
+                        >
+                            {isAdded ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                         </button>
                         <button className="w-8 h-8 rounded-full border border-gray-400 flex items-center justify-center hover:border-white text-gray-300 hover:text-white transition-colors">
                             <ThumbsUp className="w-4 h-4" />

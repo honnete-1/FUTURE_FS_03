@@ -14,7 +14,7 @@ const mockData: MediaItem[] = [
     {
         id: 1,
         title: "Cyberpunk: Edgerunners",
-        image: "https://image.tmdb.org/t/p/original/m2tF1TUX0064yMA6h7sWk365d93.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/en/2/23/Cyberpunk_Edgerunners_poster.jpg",
         tags: ["Anime", "Sci-Fi", "Dystopian"],
         match: 99,
         description: "A street kid tries to survive in a technology and body modification-obsessed city of the future. With everything to lose, he chooses to stay alive by becoming an edgerunner—a mercenary outlaw also known as a cyberpunk.",
@@ -34,7 +34,7 @@ const mockData: MediaItem[] = [
     {
         id: 3,
         title: "The Batman",
-        image: "https://image.tmdb.org/t/p/original/74xTEgt7R36Fpooo50x9T2LtAuV.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/en/f/ff/The_Batman_%28film%29_poster.jpg",
         tags: ["Action", "Crime", "Noir"],
         match: 97,
         description: "In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler.",
