@@ -4,6 +4,10 @@ import { MediaItem } from "./cms"; // Import type
 
 export const fetchMoviesAndShows = async (): Promise<MediaItem[]> => {
     try {
+        if (!db) {
+            console.warn("DB not initialized, returning empty list (Build Time?)");
+            return [];
+        }
         const querySnapshot = await getDocs(collection(db, "media"));
         const data: MediaItem[] = [];
         querySnapshot.forEach((doc: any) => {
@@ -18,10 +22,14 @@ export const fetchMoviesAndShows = async (): Promise<MediaItem[]> => {
 
 export const seedDatabase = async (data: MediaItem[]) => {
     try {
+        if (!db) throw new Error("Database not initialized (Missing Keys?)");
+
         const batch = writeBatch(db);
 
+        const currentDb = db;
+
         data.forEach((item) => {
-            const docRef = doc(db, "media", item.id.toString());
+            const docRef = doc(currentDb, "media", item.id.toString());
             batch.set(docRef, item);
         });
 

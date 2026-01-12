@@ -22,9 +22,9 @@ export function MyListProvider({ children }: { children: ReactNode }) {
     // Load list from local storage OR Firestore when user changes
     useEffect(() => {
         const loadList = async () => {
-            if (user) {
+            if (user && db) {
                 // Load from Firestore
-                const docRef = doc(db, "users", user.uid);
+                const docRef = doc(db!, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
                     setList(docSnap.data().myList || []);
@@ -51,8 +51,8 @@ export function MyListProvider({ children }: { children: ReactNode }) {
         const newList = [...list, id];
         setList(newList);
 
-        if (user) {
-            const docRef = doc(db, "users", user.uid);
+        if (user && db) {
+            const docRef = doc(db!, "users", user.uid);
             await updateDoc(docRef, {
                 myList: arrayUnion(id)
             });
@@ -64,8 +64,8 @@ export function MyListProvider({ children }: { children: ReactNode }) {
         const newList = list.filter((item) => item !== id);
         setList(newList);
 
-        if (user) {
-            const docRef = doc(db, "users", user.uid);
+        if (user && db) {
+            const docRef = doc(db!, "users", user.uid);
             await updateDoc(docRef, {
                 myList: arrayRemove(id)
             });
