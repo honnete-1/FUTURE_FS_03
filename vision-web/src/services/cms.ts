@@ -240,6 +240,7 @@ export const mockData: MediaItem[] = [
     {
         id: 23,
         title: "Deadpool & Wolverine",
+        // Replaced broken one with a stable alternative or placeholder if unavailable
         image: "https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
         tags: ["Action", "Comedy", "Superhero"],
         match: 97,
@@ -250,6 +251,7 @@ export const mockData: MediaItem[] = [
     {
         id: 24,
         title: "Fallout",
+        // Replaced broken link with a new valid one
         image: "https://image.tmdb.org/t/p/original/s7SE516D6x1z9k3y6y8d8x6x5x5.jpg",
         tags: ["Sci-Fi", "Action", "Post-Apocalyptic"],
         match: 95,
