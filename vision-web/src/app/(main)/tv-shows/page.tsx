@@ -1,6 +1,8 @@
 import ContentRow from "@/components/home/ContentRow";
 import { fetchMoviesAndShows } from "@/services/db";
 
+export const dynamic = "force-dynamic";
+
 export default async function TvShowsPage() {
     const allMedia = await fetchMoviesAndShows();
     const tvShows = allMedia.filter(m => m.type === "tv");
