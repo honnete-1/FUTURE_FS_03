@@ -1,9 +1,10 @@
 import ContentRow from "@/components/home/ContentRow";
-import { getTvShows, getTrendingContent } from "@/services/cms";
+import { fetchMoviesAndShows } from "@/services/db";
 
-export default function TvShowsPage() {
-    const tvShows = getTvShows();
-    const trending = getTrendingContent().filter(i => i.type === "tv");
+export default async function TvShowsPage() {
+    const allMedia = await fetchMoviesAndShows();
+    const tvShows = allMedia.filter(m => m.type === "tv");
+    const trending = tvShows.slice(0, 5); // Example "trending"
 
     return (
         <div className="min-h-screen bg-[#0a0a0a] pb-24">

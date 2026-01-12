@@ -1,9 +1,10 @@
 import ContentRow from "@/components/home/ContentRow";
-import { getMovies, getTopRated } from "@/services/cms";
+import { fetchMoviesAndShows } from "@/services/db";
 
-export default function MoviesPage() {
-    const movies = getMovies();
-    const topRated = getTopRated();
+export default async function MoviesPage() {
+    const allMedia = await fetchMoviesAndShows();
+    const movies = allMedia.filter(m => m.type === "movie");
+    const topRated = movies.filter(m => m.match > 90);
 
     return (
         <div className="min-h-screen bg-[#0a0a0a] pb-24">

@@ -1,18 +1,40 @@
-"use client";
-
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { getMediaById, getTrendingContent } from "@/services/cms";
+import { fetchMoviesAndShows } from "@/services/db";
 import ContentRow from "@/components/home/ContentRow";
+import { Metadata } from 'next';
 
-export default function WatchPage() {
-    const params = useParams();
-    const { id } = params;
-    const media = getMediaById(Number(id));
+type Props = {
+    params: Promise<{ id: string }>
+}
 
-    // Simple recommendation algorithm: get trending content excluding current item
-    const recommendations = getTrendingContent().filter(item => item.id !== Number(id));
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { id } = await params;
+    const allMedia = await fetchMoviesAndShows();
+    const media = allMedia.find((i) => i.id === Number(id));
+
+    if (!media) return { title: "Not Found" };
+
+    return {
+        title: media.title,
+        description: media.description,
+        openGraph: {
+            title: media.title,
+            description: media.description,
+            images: [media.image || "/logo.png"],
+        }
+    };
+}
+
+export default async function WatchPage({ params }: Props) {
+    const { id } = await params;
+    const allMedia = await fetchMoviesAndShows();
+    const media = allMedia.find((i) => i.id === Number(id));
+
+    // Recommendations: items with similar tags, excluding current
+    const recommendations = allMedia
+        .filter(item => item.id !== Number(id) && item.tags.some(t => media?.tags.includes(t)))
+        .slice(0, 10);
 
     // Fallback if media not found or no video URL
     const videoUrl = media?.videoUrl || "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";

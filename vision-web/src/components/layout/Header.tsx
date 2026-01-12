@@ -5,9 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Search, Bell, Menu } from "lucide-react";
 
+import { useAuth } from "@/context/AuthContext";
+
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
-
+    const { user, logout } = useAuth();
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 0) {
@@ -62,11 +64,20 @@ export default function Header() {
                     </Link>
 
                     {/* User Menu / Login */}
-                    <Link href="/login">
-                        <button className="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700 transition-colors">
-                            Sign In
-                        </button>
-                    </Link>
+                    {user ? (
+                        <div className="flex items-center gap-3">
+                            <img src={user.photoURL || "/default-avatar.png"} alt="User" className="w-8 h-8 rounded" />
+                            <button onClick={() => logout()} className="text-sm font-medium hover:text-white transition-colors">
+                                Sign Out
+                            </button>
+                        </div>
+                    ) : (
+                        <Link href="/login">
+                            <button className="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700 transition-colors">
+                                Sign In
+                            </button>
+                        </Link>
+                    )}
 
                     <button className="md:hidden hover:text-white transition-colors">
                         <Menu className="w-6 h-6" />

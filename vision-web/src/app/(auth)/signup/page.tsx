@@ -1,7 +1,35 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 export default function SignupPage() {
+    const router = useRouter();
+    const { signup } = useAuth();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+        setLoading(true);
+        try {
+            await signup(email, password);
+            // Optionally update profile name here if needed
+            router.push("/");
+        } catch (err: any) {
+            setError(err.message.replace("Firebase: ", ""));
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen relative flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('/hero.png')" }}>
             <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
@@ -14,31 +42,43 @@ export default function SignupPage() {
                     <h1 className="text-3xl font-bold text-white">Create Account</h1>
                 </div>
 
-                <form className="space-y-6">
+                {error && <div className="bg-[#e50914] text-white p-3 rounded mb-4 text-sm">{error}</div>}
+
+                <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
                         <input
                             type="text"
                             placeholder="Full Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             className="w-full bg-[#333] text-white px-4 py-3 rounded outline-none focus:bg-[#454545] transition-colors"
+                            required
                         />
                     </div>
                     <div>
                         <input
                             type="email"
                             placeholder="Email address"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             className="w-full bg-[#333] text-white px-4 py-3 rounded outline-none focus:bg-[#454545] transition-colors"
+                            required
                         />
                     </div>
                     <div>
                         <input
                             type="password"
                             placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             className="w-full bg-[#333] text-white px-4 py-3 rounded outline-none focus:bg-[#454545] transition-colors"
+                            required
+                            minLength={6}
                         />
                     </div>
 
-                    <button className="w-full bg-[#e50914] text-white font-bold py-3 rounded hover:bg-[#b00710] transition-colors">
-                        Sign Up
+                    <button disabled={loading} className="w-full bg-[#e50914] text-white font-bold py-3 rounded hover:bg-[#b00710] transition-colors disabled:opacity-50">
+                        {loading ? "Creating Account..." : "Sign Up"}
                     </button>
                 </form>
 

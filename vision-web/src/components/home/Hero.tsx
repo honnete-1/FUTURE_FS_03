@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Play, Info } from "lucide-react";
-import { getTrendingContent } from "@/services/cms";
+import { fetchMoviesAndShows } from "@/services/db";
 
-export default function Hero() {
-    const trending = getTrendingContent();
-    // Use a random movie from trending list for variety, or fix to first one
+export default async function Hero() {
+    const trending = await fetchMoviesAndShows();
+    // Use a random movie from filtered trending list for variety
     const featured = trending[Math.floor(Math.random() * trending.length)] || trending[0];
 
     return (

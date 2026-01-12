@@ -9,7 +9,7 @@ export interface MediaItem {
     videoUrl?: string; // Optional for now, but populated in mock data
 }
 
-const mockData: MediaItem[] = [
+export const mockData: MediaItem[] = [
     // Trending / Featured
     {
         id: 1,
