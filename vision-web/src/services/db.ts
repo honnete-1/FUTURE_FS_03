@@ -1,22 +1,28 @@
 import { db } from "@/lib/firebase";
 import { collection, getDocs, doc, setDoc, query, where, writeBatch } from "firebase/firestore";
-import { MediaItem } from "./cms"; // Import type
+import { MediaItem, mockData } from "./cms"; // Import type and mockData
 
 export const fetchMoviesAndShows = async (): Promise<MediaItem[]> => {
     try {
         if (!db) {
-            console.warn("DB not initialized, returning empty list (Build Time?)");
-            return [];
+            console.warn("DB not initialized, returning mock data backup.");
+            return mockData;
         }
         const querySnapshot = await getDocs(collection(db, "media"));
         const data: MediaItem[] = [];
         querySnapshot.forEach((doc: any) => {
             data.push(doc.data() as MediaItem);
         });
+
+        if (data.length === 0) {
+            console.warn("DB is empty, returning mock data backup.");
+            return mockData;
+        }
+
         return data;
     } catch (error) {
-        console.error("Error fetching media:", error);
-        return [];
+        console.error("Error fetching media, falling back to mock data:", error);
+        return mockData;
     }
 };
 
